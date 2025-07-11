@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Anybody:wght@200;400&family=Dosis:wght@300&family=PT+Serif:ital@1&family=Poppins:wght@500&display=swap');
+@font-face {
+    font-family: 'Druk Wide Bold Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Druk Wide Bold Bold'), url('DrukWideBold.woff') format('woff');
+    }
+*, 
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para o spinner */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #3498db; /* Cor do spinner */
+    border-top-color: transparent; /* Cor transparente para a parte superior */
+    animation: spin 1s linear infinite; /* Animação de rotação */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body{
+    font-family: 'Anybody', sans-serif;
+    background-color: #031014;
+    background-image: url("https://www.transparenttextures.com/patterns/gun-metal.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    overflow-x: hidden; /* Esconde o overflow horizontal (direita e esquerda) */
+}
+
+.fuzzy-overlay{
+    position: absolute;
+    inset: -200%;
+    background: transparent url(https://www.dropbox.com/s/h7ab1c82ctzy83n/noise.png?raw=1) 0 0;
+    opacity: 15%;
+    animation: shift 0.2s linear infinite both;
+}
+.main-opacity {
+    opacity: 1; /* Initial opacity of 1 (fully opaque) */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition over 0.5 seconds */
+  }
+@keyframes shift{
+    0%{
+        transform: translateX(10%) translateY(10%);
+    }
+    100%{
+        transform: translateX(-10%) translateY(-10%);
+    }
+}
+
+
+.main-opacity{
+    height: 100vh;
+}
+.logo{
+    width: 170px;
+}
+
+
+
+header {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    padding: 0.9rem 0;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: backdrop-filter 2s ease; /* Transição suave do desfoque */
+}
+.blur {
+    backdrop-filter: blur(10px); /* Aplica o efeito de desfoque */
+}
+
+header nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+header ul a {
+    text-decoration: none;
+    color: #e9ffff;
+    padding: 0.5em 0.8em;
+    position: relative;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 450;
+    transition: all 0.35s ease;
+}
+
+header ul a::before,
+header ul a::after {
+    content: '';
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    transition: all 0.35s ease;
+    opacity: 0;
+}
+
+/* Hover animation ---*/
+header ul a::before {
+    right: 0;
+    top: 0;
+    border-top: 3px solid #146e89;
+    border-right: 3px solid #0f6443;
+    transform: translate(-100%, 50%);
+}
+header ul a::after {
+    left: 0;
+    bottom: 0;
+    border-bottom: 3px solid #0f5064;
+    border-left: 3px solid #148979;
+    transform: translate(100%, -50%);
+}
+header ul a:hover::before,
+header ul a:hover::after {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+header ul a:hover {
+    color: #3da38d;
+}
+
+
+main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height:100vh;
+    width:100vw;
+    overflow: hidden;
+    background-attachment: fixed;
+    display: flex;
+}
+
+    
+
+.parallax{
+    pointer-events: none;
+    transition: none;
+    
+}
+
+.bg-img{
+    position: absolute;
+    width: 110%; /* Tornar a largura igual à largura do contêiner */
+    top: -14%;
+    left: 50%;
+    z-index: 1;
+    filter: brightness(100%);
+    
+}
+
+.main-bg-rightside{
+    position: absolute;
+    z-index: 3;
+    width: 40%; /* Largura desejada */
+    top: 60%; /* Ajuste conforme necessário */
+    left: 83%; /* Ajuste conforme necessário */
+    filter: drop-shadow(10px 10px 6px rgba(0, 0, 0, 0.8));
+}
+
+.main-bg-leftside{
+    position: absolute;
+    z-index: 2;
+    width: 50%; /* Largura desejada */
+    top: 52%; /* Ajuste conforme necessário */
+    left: 10%; /* Ajuste conforme necessário */
+    filter: drop-shadow(10px 10px 6px rgba(0, 0, 0, 0.8));
+
+}
+
+.text{
+    position: absolute;
+    z-index: 4;
+    top: 35%;
+    left: 50%;
+    text-align: center;
+    color: #e9ffff;
+}
+
+.text h1{
+    font-family: 'Anybody', sans-serif;
+    font-weight: 500;
+    font-size: 2.6rem;
+    text-transform: uppercase;
+    letter-spacing: -3.5px;
+    filter: drop-shadow(1px 1px 6px rgba(20, 110, 137, 0.8));
+}
+.text h2{
+    font-family: 'Druk Wide Bold Bold';
+    font-weight: 500;
+    font-size: 6.2rem;
+    line-height: 0.88;
+    letter-spacing: -2.5px;
+    text-transform: uppercase;
+    filter: drop-shadow(1px 1px 6px rgba(20, 110, 137, 0.8));
+}
+.dragon{
+    width: 35%;
+    top: 190%;
+    position: absolute;
+    z-index: 5;
+    right: 18%;
+    filter: drop-shadow(10px 40px 8px rgba(0, 0, 0, 0.5));
+}
+/* ==================== */
+.about{
+    position: relative;
+    top: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    z-index: 1;
+
+    /* background-color: #145550;
+    background-image: url("https://www.transparenttextures.com/patterns/purty-wood.png"); */
+    
+}
+
+
+.top-about{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap; 
+    margin-top: 5%;
+
+}
+.pabout{
+    display: inline-block;
+    width: 35%;
+    border-radius: 20px;
+}
+
+.pabout p{
+    border-radius: 20px;
+    font-family: 'Dosis', sans-serif;
+    color: #ffffff;
+    margin: 2%;
+    white-space: nowrap;    
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 1000;
+    padding: 2%;
+    background-color:rgba(255, 255, 255, 0.3);;
+    display:flex;
+    align-items: center; 
+    justify-content: center;
+    z-index: 10;
+    filter: drop-shadow(10px 10px 8px rgba(20, 110, 137, 0.5));    
+
+}
+.pabout p:hover{
+    filter: drop-shadow(20px 20px 8px rgba(20, 110, 137, 0.5));    
+    transform: scale(1.2);
+
+}
+.redes{
+    display: flex;
+    width: 30%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 40, 37, 0.8);
+    border-radius: 20px;
+    filter: drop-shadow(10px 10px 8px rgba(20, 110, 137, 0.5));
+}
+
+.bar {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dosis', sans-serif;
+    counter-reset: step;
+    counter-increment: step 2022;
+    background-image: url("cherryb.png");
+    filter: drop-shadow(10px 10px 8px rgba(20, 110, 137, 0.5));
+
+ 
+    background-size: 40%;
+    background-repeat: no-repeat;
+    color: #e9ffff;
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    li {
+        list-style-type: none;
+        width: 25%;
+        position: relative;
+        text-align: center;
+        letter-spacing: 0px;
+        word-break:inherit;
+        /* Years circle */
+        &:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            border: 1px solid #e9ffff;
+            background-color: #1b1b1b;
+            letter-spacing: 0px;
+            z-index: 2;
+        }
+            /* Line */
+        &:after {
+            z-index: 0;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #e9ffff;
+            top: 15%;
+            left: -50%;
+        }
+
+        &:first-child:after {
+            content: none;
+        }
+    }
+}   
+
+/* -------------------------------------------- */
+.projects{
+    position: relative;
+    top: 100vh;
+    padding: 100px;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    color:  #e9ffff;
+    background-color: #145550;
+    background-image: url("https://www.transparenttextures.com/patterns/foggy-birds.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.project-content{
+    padding-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    background-image: url("wave.png");
+    
+    background-size: 100%;
+    background-repeat: no-repeat;
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+    
+}
+.project-block{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    margin: 1%;
+    filter: drop-shadow(1px 1px 8px rgba(20, 110, 137, 0.5));
+}
+.project-name{
+    font-family: 'Anybody', sans-serif;
+    display: block;
+    font-weight: 1000;
+    padding: 2%;
+    font-size: 2em;
+    margin: 0;
+}
+.project-desc{
+    font-size: 5vh;
+    font-style: italic;
+    padding: 5%;
+}
+
+.project-content iframe {
+    border: 2px solid #000000; 
+    border-radius: 20px;
+    width: 30vw;
+    height: 15vw;
+    background-color: white;
+}
+
+
+
+.wave{
+    display: flex;
+    width: 100%; /* Tornar a largura igual à largura do contêiner */
+    height: 10%;
+    z-index: 1;
+    overflow: hidden;
+    background-color: red;
+}
+.scrolling-text {
+    animation: scrollRight 6s linear infinite;
+    position: relative;
+    display: block;
+    font-size: 4.5rem;
+    color: white;  
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 0%;
+    filter: drop-shadow(10px 10px 8px rgba(20, 110, 137, 0.5));
+    font-family: 'Druk Wide Bold Bold';
+}
+
+.scroll-bg{
+    border-bottom: 1px solid white;
+
+}
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+/* //////////////////////////////////////// */
+
+
+@media (max-width: 1100px){
+    .text h1{
+        font-size:1.8rem ;
+    }
+    .text h2{
+        font-size:2.5rem ;
+    }
+    .scrolling-text{
+        font-size: 0.9rem;
+    }
+    .about .scrolling-text{
+        top: 92%;
+    }
+    .projects .scrolling-text{
+        top: 130%;
+    }
+    .pabout{
+        font-size: 0.9rem;
+        top: 105%;
+        left: 8%;
+    }
+    .pabout p{
+        padding: 3%;
+    }
+
+    .bloco{
+        width: 200%;
+        height: 112.50%;
+    }
+    .pprojects{
+        font-size: 2rem;
+    }
+
+}
+
+
+@media (max-width: 725px){
+    .text h1{
+        font-size:5rem ;
+        line-height: 1.1;
+    }
+    .text h2{
+        font-size:4.1rem ;
+        line-height: 1.1;
+    }
+    header nav{
+        padding:0 1rem;
+    }
+
+    .logo{
+        width: 40px;
+    }
+    header ul a{
+        font-size: 0.73rem;
+        padding: 0 0.9rem;
+    }
+    .bg-img{
+        width:initial;
+        height:277%; 
+    }
+    .main-bg-rightside{
+        width:initial;
+        height:142%;
+        left: 90%; 
+
+    }
+    .main-bg-leftside{
+        width:initial;
+        height:120%; 
+    }
+    .scrolling-text{
+        font-size: 0.9rem;
+    }
+    .about .scrolling-text{
+        top: 92%;
+    }
+    .projects .scrolling-text{
+        top: 130%;
+    }
+    .pabout{
+        font-size: 0.9rem;
+        top: 105%;
+        left: 8%;
+    }
+    .pabout p{
+        padding: 3%;
+    }
+
+    .bloco{
+        width: 200%;
+        height: 112.50%;
+    }
+    .pprojects{
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 520px){
+    .text h1{
+        font-size:3.3rem ;
+
+    }
+    .text h2{
+        font-size:2.6rem ;
+
+    }
+    header nav{
+        padding:0 1rem;
+    }
+
+    .logo{
+        width: 40px;
+    }
+    header ul a{
+        font-size: 0.73rem;
+        padding: 0 0.9rem;
+    }
+    .bg-img{
+        width:initial;
+    }
+
+    .scrolling-text{
+        font-size: 0.9rem;
+    }
+    .about .scrolling-text{
+        top: 52%;
+    }
+    .projects .scrolling-text{
+        top: 130%;
+    }
+    .pabout{
+        font-size: 0.9rem;
+        top: 105%;
+        left: 8%;
+    }
+    .pabout p{
+        padding: 3%;
+    }
+
+    .bloco{
+        width: 200%;
+        height: 112.50%;
+    }
+    .pprojects{
+        font-size: 2rem;
+    }
+
+}
